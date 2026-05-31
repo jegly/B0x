@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 600" width="1500" height="600">
+  <defs>
+    <linearGradient id="bg-bxl-catppuccin-frappe" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#292c3c"></stop>
+      <stop offset="1" stop-color="#232634"></stop>
+    </linearGradient>
+    <radialGradient id="glow-bxl-catppuccin-frappe" cx="22%" cy="56%" r="36%">
+      <stop offset="0%" stop-color="#a6d189" stop-opacity="0.22"></stop>
+      <stop offset="50%" stop-color="#a6d189" stop-opacity="0.08"></stop>
+      <stop offset="100%" stop-color="#a6d189" stop-opacity="0"></stop>
+    </radialGradient>
+    <linearGradient id="accent-bxl-catppuccin-frappe" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a6d189"></stop>
+      <stop offset="1" stop-color="#ca9ee6"></stop>
+    </linearGradient>
+    
+    <pattern id="isoR-bxl-catppuccin-frappe" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="rotate(30)">
+      <line x1="0" y1="0" x2="0" y2="40" stroke="rgba(166,209,137,0.10)" stroke-width="1"></line>
+    </pattern>
+    <pattern id="isoL-bxl-catppuccin-frappe" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="rotate(-30)">
+      <line x1="0" y1="0" x2="0" y2="40" stroke="rgba(166,209,137,0.10)" stroke-width="1"></line>
+    </pattern>
+  </defs>
+
+  
+    <defs>
+      <clipPath id="window-bxl-catppuccin-frappe">
+        <rect x="0" y="0" width="1500" height="600" rx="18" ry="18"></rect>
+      </clipPath>
+    </defs>
+    <g clip-path="url(#window-bxl-catppuccin-frappe)">
+      <rect width="1500" height="600" fill="url(#bg-bxl-catppuccin-frappe)"></rect>
+      <rect width="1500" height="600" fill="url(#isoR-bxl-catppuccin-frappe)"></rect>
+      <rect width="1500" height="600" fill="url(#isoL-bxl-catppuccin-frappe)"></rect>
+      <rect width="1500" height="600" fill="url(#glow-bxl-catppuccin-frappe)"></rect>
+      <rect x="0" y="0" width="1500" height="48" fill="#303446"></rect>
+      <line x1="0" y1="48" x2="1500" y2="48" stroke="rgba(255,255,255,0.05)" stroke-width="1"></line>
+      <circle cx="1400" cy="24" r="11" fill="#303446" stroke="#838ba7" stroke-opacity="0.55" stroke-width="1"></circle>
+      <text x="1400" y="25" fill="#838ba7" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle">−</text>
+      <circle cx="1430" cy="24" r="11" fill="#303446" stroke="#838ba7" stroke-opacity="0.55" stroke-width="1"></circle>
+      <rect x="1425" y="19" width="10" height="10" fill="none" stroke="#838ba7" stroke-opacity="0.8" stroke-width="1"></rect>
+      <circle cx="1460" cy="24" r="11" fill="#303446" stroke="#838ba7" stroke-opacity="0.55" stroke-width="1"></circle>
+      <path d="M 1455 20 L 1465 28 M 1455 28 L 1465 20" stroke="#838ba7" stroke-width="1.2" stroke-linecap="round"></path>
+      <circle cx="714" cy="24" r="4" fill="#a6d189"></circle>
+      <text x="728" y="25" fill="#c6d0f5" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="600" letter-spacing="2" dominant-baseline="middle">Box</text>
+    </g>
+    <rect x="0.5" y="0.5" width="1499" height="599" rx="18" ry="18" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"></rect>
+  
+
+  <g transform="translate(90,127) scale(1.7)">
+    <polygon points="100,10 190,55 100,100 10,55" fill="#c6d0f5" stroke="#232634" stroke-width="1.5" stroke-linejoin="miter"></polygon>
+    <polygon points="10,55 100,100 100,210 10,165" fill="#414559" stroke="#232634" stroke-width="1.5" stroke-linejoin="miter"></polygon>
+    <polygon points="190,55 100,100 100,210 190,165" fill="#949cbb" stroke="#232634" stroke-width="1.5" stroke-linejoin="miter"></polygon>
+  </g>
+
+  
+  <g transform="translate(483,70)" fill="#c6d0f5">
+    <path d="M4.144 152.144L4.144 31.524L51.652 31.524L51.652 40.552L60.680 40.552L60.680 49.728L69.856 49.728L69.856 78.736L60.680 78.736L60.680 87.912L51.652 87.912L51.652 95.460L60.680 95.460L60.680 104.636L69.856 104.636L69.856 133.644L60.680 133.644L60.680 142.820L51.652 142.820L51.652 152.144L4.144 152.144ZM15.096 86.284L50.024 86.284L50.024 77.256L59.200 77.256L59.200 51.356L50.024 51.356L50.024 42.180L15.096 42.180L15.096 86.284ZM15.096 141.192L50.024 141.192L50.024 132.164L59.200 132.164L59.200 106.264L50.024 106.264L50.024 97.088L15.096 97.088L15.096 141.192ZM87.468 142.820L87.468 133.644L78.144 133.644L78.144 86.284L87.468 86.284L87.468 77.256L96.644 77.256L96.644 68.080L125.652 68.080L125.652 77.256L134.680 77.256L134.680 86.284L143.856 86.284L143.856 133.644L134.680 133.644L134.680 142.820L125.652 142.820L125.652 152.144L96.644 152.144L96.644 142.820L87.468 142.820ZM89.096 132.164L98.124 132.164L98.124 141.192L124.024 141.192L124.024 132.164L133.200 132.164L133.200 87.912L124.024 87.912L124.024 78.736L98.124 78.736L98.124 87.912L89.096 87.912L89.096 132.164ZM152.144 152.144L152.144 141.192L161.468 141.192L161.468 122.988L170.644 122.988L170.644 113.812L179.672 113.812L179.672 106.264L170.644 106.264L170.644 97.088L161.468 97.088L161.468 78.736L152.144 78.736L152.144 68.080L163.096 68.080L163.096 77.256L172.124 77.256L172.124 95.460L181.300 95.460L181.300 104.636L188.848 104.636L188.848 95.460L198.024 95.460L198.024 77.256L207.200 77.256L207.200 68.080L217.856 68.080L217.856 78.736L208.680 78.736L208.680 97.088L199.652 97.088L199.652 106.264L190.476 106.264L190.476 113.812L199.652 113.812L199.652 122.988L208.680 122.988L208.680 141.192L217.856 141.192L217.856 152.144L207.200 152.144L207.200 142.820L198.024 142.820L198.024 124.468L188.848 124.468L188.848 115.440L181.300 115.440L181.300 124.468L172.124 124.468L172.124 142.820L163.096 142.820L163.096 152.144L152.144 152.144Z"></path>
+  </g>
+
+  
+  <g transform="translate(491,234)" fill="#838ba7">
+    <path d="M7.360 41.120L7.360 21.280L2.360 21.280L2.360 18.400L7.360 18.400L7.360 10.960L9.800 10.960L9.800 8.520L17.640 8.520L17.640 11.400L10.240 11.400L10.240 18.400L17.640 18.400L17.640 21.280L10.240 21.280L10.240 41.120L7.360 41.120ZM23.640 38.600L23.640 36.120L21.120 36.120L21.120 23.320L23.640 23.320L23.640 20.880L26.120 20.880L26.120 18.400L33.960 18.400L33.960 20.880L36.400 20.880L36.400 23.320L38.880 23.320L38.880 36.120L36.400 36.120L36.400 38.600L33.960 38.600L33.960 41.120L26.120 41.120L26.120 38.600L23.640 38.600ZM24.080 35.720L26.520 35.720L26.520 38.160L33.520 38.160L33.520 35.720L36 35.720L36 23.760L33.520 23.760L33.520 21.280L26.520 21.280L26.520 23.760L24.080 23.760L24.080 35.720ZM43.600 41.120L43.600 18.400L46.480 18.400L46.480 20.880L48.520 20.880L48.520 18.400L56.360 18.400L56.360 21.280L48.960 21.280L48.960 23.760L46.480 23.760L46.480 41.120L43.600 41.120ZM88.520 41.120L88.520 10.960L91.440 10.960L91.440 41.120L88.520 41.120ZM108.520 16.360L108.520 10.960L111.440 10.960L111.440 16.360L108.520 16.360ZM108.520 41.120L108.520 18.400L111.440 18.400L111.440 41.120L108.520 41.120ZM121.120 41.120L121.120 18.400L124.080 18.400L124.080 20.880L126.120 20.880L126.120 18.400L133.960 18.400L133.960 20.880L136.400 20.880L136.400 23.320L138.880 23.320L138.880 41.120L136 41.120L136 23.760L133.520 23.760L133.520 21.280L126.520 21.280L126.520 23.760L124.080 23.760L124.080 41.120L121.120 41.120ZM143.640 38.600L143.640 36.120L141.120 36.120L141.120 18.400L144.080 18.400L144.080 35.720L146.520 35.720L146.520 38.160L153.520 38.160L153.520 35.720L156 35.720L156 18.400L158.880 18.400L158.880 41.120L156 41.120L156 38.600L153.960 38.600L153.960 41.120L146.120 41.120L146.120 38.600L143.640 38.600ZM161.120 41.120L161.120 38.160L163.640 38.160L163.640 33.240L166.120 33.240L166.120 30.760L168.560 30.760L168.560 28.720L166.120 28.720L166.120 26.240L163.640 26.240L163.640 21.280L161.120 21.280L161.120 18.400L164.080 18.400L164.080 20.880L166.520 20.880L166.520 25.800L169 25.800L169 28.280L171.040 28.280L171.040 25.800L173.520 25.800L173.520 20.880L176 20.880L176 18.400L178.880 18.400L178.880 21.280L176.400 21.280L176.400 26.240L173.960 26.240L173.960 28.720L171.480 28.720L171.480 30.760L173.960 30.760L173.960 33.240L176.400 33.240L176.400 38.160L178.880 38.160L178.880 41.120L176 41.120L176 38.600L173.520 38.600L173.520 33.640L171.040 33.640L171.040 31.200L169 31.200L169 33.640L166.520 33.640L166.520 38.600L164.080 38.600L164.080 41.120L161.120 41.120Z"></path>
+  </g>
+  
+  <rect x="675.52" y="240" width="12" height="32" fill="#838ba7"></rect>
+
+  <rect x="483" y="290" width="280" height="4" rx="2" ry="2" fill="url(#accent-bxl-catppuccin-frappe)" fill-opacity="0.9"></rect>
+
+  <text x="483" y="336" fill="#b5bfe2" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="400" dominant-baseline="alphabetic">native GTK4 desktop · on-device · offline-first</text>
+
+  <g><rect x="483" y="364" width="117" height="42" rx="21" ry="21" fill="rgba(255,255,255,0.02)" stroke="#838ba7" stroke-opacity="0.65" stroke-width="1.3"></rect><text x="541.5" y="386" fill="#838ba7" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="500" text-anchor="middle" dominant-baseline="middle">Local Chat</text></g><g><rect x="610" y="364" width="117" height="42" rx="21" ry="21" fill="rgba(255,255,255,0.02)" stroke="#a6d189" stroke-opacity="0.65" stroke-width="1.3"></rect><text x="668.5" y="386" fill="#a6d189" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="500" text-anchor="middle" dominant-baseline="middle">Voice Mode</text></g><g><rect x="737" y="364" width="127" height="42" rx="21" ry="21" fill="rgba(255,255,255,0.02)" stroke="#f4b8e4" stroke-opacity="0.65" stroke-width="1.3"></rect><text x="800.5" y="386" fill="#f4b8e4" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="500" text-anchor="middle" dominant-baseline="middle">Live Camera</text></g><g><rect x="874" y="364" width="165" height="42" rx="21" ry="21" fill="rgba(255,255,255,0.02)" stroke="#ca9ee6" stroke-opacity="0.65" stroke-width="1.3"></rect><text x="956.5" y="386" fill="#ca9ee6" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="500" text-anchor="middle" dominant-baseline="middle">RAG + Notebooks</text></g><g><rect x="1049" y="364" width="117" height="42" rx="21" ry="21" fill="rgba(255,255,255,0.02)" stroke="#99d1db" stroke-opacity="0.65" stroke-width="1.3"></rect><text x="1107.5" y="386" fill="#99d1db" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="500" text-anchor="middle" dominant-baseline="middle">Web Search</text></g>
+  <g><rect x="483" y="420" width="117" height="42" rx="21" ry="21" fill="rgba(255,255,255,0.02)" stroke="#ef9f76" stroke-opacity="0.65" stroke-width="1.3"></rect><text x="541.5" y="442" fill="#ef9f76" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="500" text-anchor="middle" dominant-baseline="middle">Filesystem</text></g><g><rect x="610" y="420" width="117" height="42" rx="21" ry="21" fill="rgba(255,255,255,0.02)" stroke="#e5c890" stroke-opacity="0.65" stroke-width="1.3"></rect><text x="668.5" y="442" fill="#e5c890" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="500" text-anchor="middle" dominant-baseline="middle">Agent Mode</text></g><g><rect x="737" y="420" width="79" height="42" rx="21" ry="21" fill="rgba(255,255,255,0.02)" stroke="#ca9ee6" stroke-opacity="0.65" stroke-width="1.3"></rect><text x="776.5" y="442" fill="#ca9ee6" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="500" text-anchor="middle" dominant-baseline="middle">Memory</text></g><g><rect x="826" y="420" width="174" height="42" rx="21" ry="21" fill="rgba(255,255,255,0.02)" stroke="#99d1db" stroke-opacity="0.65" stroke-width="1.3"></rect><text x="913" y="442" fill="#99d1db" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="500" text-anchor="middle" dominant-baseline="middle">Markdown + LaTeX</text></g><g><rect x="1010" y="420" width="108" height="42" rx="21" ry="21" fill="rgba(255,255,255,0.02)" stroke="#a6d189" stroke-opacity="0.65" stroke-width="1.3"></rect><text x="1064" y="442" fill="#a6d189" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="500" text-anchor="middle" dominant-baseline="middle">Piper TTS</text></g>
+
+  <text x="483" y="562" fill="#838ba7" font-family="JetBrains Mono, ui-monospace, monospace" font-size="16" letter-spacing="2.5">UBUNTU AMD64<tspan dx="14" fill="#838ba7">·</tspan><tspan dx="8">GTK4 + LIBADWAITA</tspan><tspan dx="14" fill="#838ba7">·</tspan><tspan dx="8">LITERT-LM</tspan><tspan dx="14" fill="#838ba7">·</tspan><tspan dx="8" fill="#a6d189">100% ON-DEVICE</tspan></text>
+</svg>
