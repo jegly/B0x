@@ -37,7 +37,7 @@ app and brings the Android app's offline design to the desktop.
 
 **Box** also runs on Android as a separate, **open-source (Apache-2.0)** app. It
 adds on-device image generation, speech-to-text, and encrypted storage with a
-biometric lock, and alot more !
+biometric lock, and a lot more !
 
 **→ [github.com/jegly/Box](https://github.com/jegly/Box)**
 
