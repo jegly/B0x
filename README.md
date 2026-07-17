@@ -34,7 +34,7 @@ your own machine, with no account and no telemetry. Built on Google's
 > and a design philosophy and have many of the same features, but they are
 > independent projects. The Android app is open source (Apache-2.0). **Box for
 > Linux ships as a closed-source binary**: the `.deb` contains compiled code,
-> and its source is not published.
+> and its source is not published at this time for several reasons.
 
 ## Box for Android
 
