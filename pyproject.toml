@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "box"
+version = "0.4.0"
+description = "Native GTK4/libadwaita GUI for Google LiteRT-LM on Ubuntu"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "Jegly" }]
+dependencies = [
+    "litert-lm-api>=0.12.0",
+    "PyGObject>=3.50; sys_platform != 'win32'",
+    "sounddevice>=0.4",
+    # Voice-activity detection for live conversation mode (RMS fallback if absent)
+    "webrtcvad-wheels>=2.0",
+    "numpy>=1.24",
+    "pypdf>=4.0",
+    # RAG: embedding model runtime + tokenizer
+    "ai-edge-litert>=1.0",
+    "sentencepiece>=0.2",
+    # Phase 4 tools: free, key-less web search via DuckDuckGo
+    "ddgs>=9.0",
+    # Display-math (LaTeX $$…$$) rendering via matplotlib mathtext — no TeX
+    # install needed. Inline math uses the dependency-free Unicode renderer.
+    "matplotlib>=3.7",
+    # TurboVec: Rust-backed SIMD vector index (Google TurboQuant). Replaces the
+    # numpy float32 BLOB search for RAG, notebooks, and persistent memory.
+    "turbovec>=0.1",
+]
+
+[project.scripts]
+box = "box_chat.__main__:main"
+
+[tool.setuptools]
+packages = ["box_chat"]

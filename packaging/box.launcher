@@ -1,0 +1,10 @@
+#!/bin/sh
+# Box launcher — installed as /usr/bin/box.
+#
+# Runs the SYSTEM python3 (so the apt-provided gi/GTK bindings load) against
+# the bundled, Nuitka-compiled box_chat extension and its vendored deps under
+# /opt/box. The compiled box_chat.so is ABI-locked to the python3 minor
+# version pinned in the package's Depends.
+PYTHONPATH="/opt/box/site-packages${PYTHONPATH:+:$PYTHONPATH}"
+export PYTHONPATH
+exec python3 -c "import sys; sys.argv[0]='box'; from box_chat.__main__ import main; sys.exit(main())" "$@"

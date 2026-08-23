@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+*.profraw
+
+# Build output
+build/
+
+# Vendored binaries — fetched by scripts/fetch_llama_server.sh and
+# scripts/fetch_sd_cpp.sh, pinned by SHA-256. Not committed.
+vendor/
+
+# Local dev notes, not for the public repo
+claude_box_linux_memory_dont_push_to_github/

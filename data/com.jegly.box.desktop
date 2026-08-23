@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Box
+GenericName=Local LLM Chat
+Comment=Chat with Google LiteRT-LM models locally
+Exec=box
+Icon=com.jegly.box
+Terminal=false
+Categories=Utility;Network;Chat;Development;
+Keywords=AI;LLM;Gemma;LiteRT;Chat;Local;
+StartupNotify=true
+StartupWMClass=com.jegly.box

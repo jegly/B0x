@@ -1,0 +1,29 @@
+Package: box
+Version: @VERSION@
+Section: utils
+Priority: optional
+Architecture: @ARCH@
+Maintainer: Jegly <jjjegly@gmail.com>
+Depends: python3 (>= @PYMIN@), python3 (<< @PYMAX@),
+ python3-gi,
+ gir1.2-gtk-4.0 (>= 4.0),
+ gir1.2-adw-1,
+ gir1.2-gstreamer-1.0,
+ gstreamer1.0-plugins-good,
+ gstreamer1.0-pipewire,
+ libportaudio2,
+ libgomp1,
+ libssl3t64 | libssl3,
+ zlib1g,
+ libzstd1
+Recommends: libvulkan1
+Description: Box — on-device AI workbench (GTK4)
+ Native GTK4/libadwaita desktop app that runs LiteRT-LM and GGUF
+ (llama.cpp) models fully locally — chat with text/images/audio, the
+ Box Code coding agent, image generation/inpaint/upscale, document Q&A,
+ voice conversation, live camera vision, and web/file tools. Inference
+ runs kernel-sandboxed. No account, no telemetry.
+ .
+ Closed-source binary build: the application code ships compiled to a
+ native extension. Chat models are downloaded on first use; the
+ inference engines and small helper models are bundled.

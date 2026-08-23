@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Left face (dark) -->
+  <polygon points="32,46 64,64 64,101 32,83" fill="#2D2D2D"/>
+  <!-- Right face (medium grey) -->
+  <polygon points="96,46 96,83 64,101 64,64" fill="#B2B2B2"/>
+  <!-- Top face (light grey) — drawn last to sit on top at edges -->
+  <polygon points="64,27 96,46 64,64 32,46" fill="#EAEAEA"/>
+</svg>
