@@ -1,0 +1,46 @@
+#!/bin/sh
+# Box snap launcher — the snap's equivalent of packaging/box.launcher.
+#
+# core26 has no gnome extension yet, so this does the runtime wiring it would
+# normally provide (libs, typelibs, schemas, GStreamer, audio, Wayland), then
+# runs the staged python3 against the deb's compiled box_chat under /opt/box.
+
+TRIPLET=x86_64-linux-gnu
+LIBDIR="$SNAP/usr/lib/$TRIPLET"
+
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$LIBDIR:$SNAP/lib/$TRIPLET:$LIBDIR/pulseaudio:$LIBDIR/libproxy"
+export PYTHONPATH="$SNAP/lib/box-snap:/opt/box/site-packages:$SNAP/usr/lib/python3/dist-packages"
+export PYTHONNOUSERSITE=1
+
+# GTK / GLib
+export GI_TYPELIB_PATH="$LIBDIR/girepository-1.0"
+export XDG_DATA_DIRS="$SNAP/usr/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+export GSETTINGS_SCHEMA_DIR="$SNAP/usr/share/glib-2.0/schemas"
+export GIO_MODULE_DIR="$LIBDIR/gio/modules"
+export GDK_PIXBUF_MODULE_FILE="$LIBDIR/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+export FONTCONFIG_PATH="$SNAP/etc/fonts"
+export XKB_CONFIG_ROOT="$SNAP/usr/share/X11/xkb"
+
+# GStreamer (webcam vision)
+export GST_PLUGIN_SYSTEM_PATH="$LIBDIR/gstreamer-1.0"
+export GST_PLUGIN_SCANNER="$LIBDIR/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner"
+export GST_REGISTRY="$SNAP_USER_DATA/.cache/gstreamer-registry.bin"
+
+# Models are multi-GB: keep them out of the per-revision $SNAP_USER_DATA,
+# which snapd copies on every refresh. Settings stay revisioned.
+export XDG_DATA_HOME="$SNAP_USER_COMMON/.local/share"
+export XDG_CACHE_HOME="$SNAP_USER_COMMON/.cache"
+
+# snapd points XDG_RUNTIME_DIR at a per-snap dir it doesn't always create;
+# the sandbox probe cache and audio/Wayland sockets live there.
+mkdir -p "$XDG_RUNTIME_DIR" && chmod 0700 "$XDG_RUNTIME_DIR"
+if [ -n "$WAYLAND_DISPLAY" ] && [ ! -e "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" ] \
+   && [ -e "$XDG_RUNTIME_DIR/../$WAYLAND_DISPLAY" ]; then
+    ln -sf "../$WAYLAND_DISPLAY" "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"
+fi
+
+# Audio: PortAudio → ALSA → pulse plugin → host PulseAudio/PipeWire-pulse.
+export ALSA_CONFIG_PATH="$SNAP/etc/asound.conf"
+export PULSE_SERVER="unix:$XDG_RUNTIME_DIR/../pulse/native"
+
+exec "$SNAP/usr/bin/python3" -c "import sys; sys.argv[0]='box'; from box_chat.__main__ import main; sys.exit(main())" "$@"

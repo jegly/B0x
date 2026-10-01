@@ -1,0 +1,145 @@
+name: box-linux
+title: Box
+base: core26
+version: '0.4.0'
+summary: Private, on-device AI workbench — chat, coding agent, image studio
+description: |
+  Box is a native GTK4 / libadwaita AI workbench that runs entirely on your
+  own machine. It chats with text, images and audio; codes in its own agent
+  workspace (Box Code); generates, inpaints and upscales images; answers from
+  your documents; and runs both LiteRT-LM (.litertlm) and GGUF (llama.cpp)
+  models. No account, no telemetry — models download once, then run offline.
+
+  Inference servers run kernel-sandboxed with Landlock on top of the snap's
+  own confinement.
+license: GPL-3.0-or-later
+website: https://github.com/jegly/b0x
+source-code: https://github.com/jegly/b0x
+issues: https://github.com/jegly/b0x/issues
+contact: https://github.com/jegly/b0x/issues
+icon: data/icons/hicolor/scalable/apps/com.jegly.box.svg
+grade: stable
+confinement: strict
+
+platforms:
+  amd64:
+
+# The release .deb's box_chat is a Nuitka extension ABI-locked to Python 3.14,
+# which is Ubuntu 26.04's python3 — hence core26. snapcraft's gnome extension
+# doesn't support core26 yet, so the GTK stack is staged below and wired up by
+# snap/local/box-launch instead.
+
+# The runtime resolves engines, models, fonts and icons from fixed paths
+# (/opt/box/..., /usr/share/box/...). Map those into the snap so the compiled
+# app works unmodified.
+layout:
+  /opt/box:
+    bind: $SNAP/opt/box
+  /usr/share/box:
+    bind: $SNAP/usr/share/box
+  # ALSA (PortAudio → voice mode) looks for its config and plugins at
+  # compiled-in system paths.
+  /usr/share/alsa:
+    bind: $SNAP/usr/share/alsa
+  /usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/alsa-lib:
+    bind: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/alsa-lib
+
+apps:
+  box-linux:
+    command: bin/box-launch
+    desktop: usr/share/applications/com.jegly.box.desktop
+    common-id: com.jegly.box
+    extensions: [gpu]
+    plugs:
+      - desktop
+      - desktop-legacy
+      - wayland
+      - x11
+      - opengl            # /dev/dri — GTK GL renderer, Vulkan llama.cpp / sd.cpp
+      - unity7            # StatusNotifierItem tray icon
+      - gsettings
+      - audio-playback    # TTS / voice mode
+      - audio-record      # push-to-talk / voice mode
+      - camera            # live vision (not auto-connected)
+      - pipewire          # GStreamer pipewiresrc camera path (not auto-connected)
+      - network           # model downloads, web search
+      - network-bind      # llama-server listens on localhost
+      - home              # workspace folders, Box Code projects
+      - removable-media   # projects on external drives (not auto-connected)
+
+slots:
+  # Gtk.Application registers its app id on the session bus.
+  dbus-box:
+    interface: dbus
+    bus: session
+    name: com.jegly.box
+
+parts:
+  box:
+    plugin: dump
+    source: https://github.com/jegly/B0x/releases/download/v0.4.0/box_0.4.0_amd64.deb
+    source-type: deb
+    source-checksum: sha256/2d92e8f5fe03aaf21ddf7a9ea734628514232f5b1c42b587b60190f96051f13d
+    # The deb's Depends, staged from the 26.04 archive, plus what a strict
+    # snap needs that a host install gets for free (icons, schemas, ALSA→pulse,
+    # dconf, pixbuf loaders).
+    stage-packages:
+      - python3
+      - python3-gi
+      - gir1.2-gtk-4.0
+      - gir1.2-adw-1
+      - gir1.2-gstreamer-1.0
+      - gstreamer1.0-plugins-base
+      - gstreamer1.0-plugins-good
+      - gstreamer1.0-pipewire
+      - libportaudio2
+      - libasound2-plugins
+      - libgomp1
+      - libssl3t64
+      - zlib1g
+      - libzstd1
+      - libvulkan1
+      - librsvg2-common
+      - adwaita-icon-theme
+      - dconf-gsettings-backend
+      - fontconfig-config
+      - xkb-data          # libxkbcommon keymaps; GTK segfaults without them
+    stage:
+      - -usr/bin/box   # the deb's launcher runs the host python3; replaced by box-launch
+
+  # RAG / notebooks / persistent memory import turbovec, but the v0.4.0 deb was
+  # built without it (since fixed in build_deb.sh — drop this part once the
+  # source deb includes it). Wheels are zips: unpack it straight into the deb's
+  # site-packages (its only dependency, numpy, is already there).
+  turbovec:
+    plugin: dump
+    source: https://files.pythonhosted.org/packages/e5/6d/c1acf31a1ef381b588de86ebebb32c3ca7d310cbb84279ac1f65c3a3e854/turbovec-1.0.0-cp39-abi3-manylinux_2_28_x86_64.whl
+    source-type: zip
+    source-checksum: sha256/c810f50b967c2163b78d1e27d29e153ab5e8820de23921ad959227acca8bb06a
+    organize:
+      '*': opt/box/site-packages/
+
+  runtime:
+    after: [box, turbovec]
+    plugin: dump
+    source: snap/local
+    organize:
+      box-launch: bin/box-launch
+      sitecustomize.py: lib/box-snap/sitecustomize.py
+      asound.conf: etc/asound.conf
+    build-packages:
+      - libglib2.0-bin
+      - libgdk-pixbuf2.0-bin
+    override-prime: |
+      craftctl default
+      # GTK aborts without compiled schemas; snap has no post-install hook for it.
+      glib-compile-schemas "$CRAFT_PRIME/usr/share/glib-2.0/schemas"
+      # Pixbuf loader cache holds absolute paths — generate against the primed
+      # loaders, then point it at the installed location.
+      LOADERS="usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/gdk-pixbuf-2.0/2.10.0"
+      if [ -d "$CRAFT_PRIME/$LOADERS/loaders" ]; then
+        GDK_PIXBUF_MODULEDIR="$CRAFT_PRIME/$LOADERS/loaders" \
+          "/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/gdk-pixbuf-2.0/gdk-pixbuf-query-loaders" \
+          | sed "s|$CRAFT_PRIME|/snap/$CRAFT_PROJECT_NAME/current|g" \
+          > "$CRAFT_PRIME/$LOADERS/loaders.cache"
+      fi
