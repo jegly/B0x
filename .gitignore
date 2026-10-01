@@ -15,3 +15,9 @@ vendor/
 
 # Local dev notes, not for the public repo
 claude_box_linux_memory_dont_push_to_github/
+
+# snapcraft
+*.snap
+parts/
+stage/
+prime/

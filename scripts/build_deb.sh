@@ -24,7 +24,7 @@ cd "$REPO_ROOT"
 
 PKG_DEPS=(litert-lm-api ai-edge-litert sentencepiece numpy sounddevice
           pypdf ddgs webrtcvad-wheels matplotlib
-          pillow regex argon2-cffi)
+          pillow regex argon2-cffi turbovec)
 
 ARCH="amd64"
 VERSION="$(python3 -c 'import box_chat,sys; sys.stdout.write(box_chat.__version__)')"
