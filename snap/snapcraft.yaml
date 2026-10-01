@@ -67,13 +67,6 @@ apps:
       - home              # workspace folders, Box Code projects
       - removable-media   # projects on external drives (not auto-connected)
 
-slots:
-  # Gtk.Application registers its app id on the session bus.
-  dbus-box:
-    interface: dbus
-    bus: session
-    name: com.jegly.box
-
 parts:
   box:
     plugin: dump
@@ -126,6 +119,7 @@ parts:
     organize:
       box-launch: bin/box-launch
       sitecustomize.py: lib/box-snap/sitecustomize.py
+      box_snap_main.py: lib/box-snap/box_snap_main.py
       asound.conf: etc/asound.conf
     build-packages:
       - libglib2.0-bin
