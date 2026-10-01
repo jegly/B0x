@@ -4,14 +4,62 @@ base: core26
 version: '0.4.0'
 summary: Private, on-device AI workbench — chat, coding agent, image studio
 description: |
-  Box is a native GTK4 / libadwaita AI workbench that runs entirely on your
-  own machine. It chats with text, images and audio; codes in its own agent
-  workspace (Box Code); generates, inpaints and upscales images; answers from
-  your documents; and runs both LiteRT-LM (.litertlm) and GGUF (llama.cpp)
-  models. No account, no telemetry — models download once, then run offline.
+  **Box** is a private AI workbench for the Linux desktop. Chat with text,
+  images and audio, let a coding agent work on your projects, generate and
+  edit images, and ask questions about your own documents — all on your own
+  machine. No account, no telemetry: models download once, then run offline.
 
-  Inference servers run kernel-sandboxed with Landlock on top of the snap's
-  own confinement.
+  **Two inference engines**
+
+  * Google's LiteRT-LM runs Gemma .litertlm models with vision, audio and
+    native tool calling
+  * A bundled llama.cpp engine (CPU and Vulkan) runs GGUF models such as
+    Gemma QAT and Qwen coders
+  * A built-in model hub downloads checksum-verified models in one click
+
+  **Box Code — a local coding agent**
+
+  Point it at a project folder and give it tasks. It explores, edits with
+  exact-match patches, runs commands in a sandboxed shell with no network,
+  and keeps a todo list. Choose Ask mode to approve each risky action, or
+  Auto mode to let it work.
+
+  **Image Studio**
+
+  * Generate with Z-Image Turbo, FLUX.2-klein and Stable Diffusion 1.5 / 2.1
+  * img2img, inpainting with a paintable mask, hires fix and LoRA
+  * Erase objects with MI-GAN and upscale 4× with EDSR
+
+  **Everything else**
+
+  * Document Q&A: attach PDFs, Markdown or code; answers cite their sources.
+    Notebooks keep reusable document collections
+  * Agent mode with web search (DuckDuckGo, no API key) and workspace file tools
+  * Audits of logs and configs, even ones larger than the context window
+  * Hands-free voice conversation with Piper text-to-speech
+  * Live camera vision
+  * Persistent memory you can review and delete
+  * Markdown, LaTeX and syntax-highlighted code in chat
+  * 52 themes, Glass and Liquid Glass modes, and 80 bundled fonts
+
+  **You decide what runs**
+
+  Every capability starts switched off. Tools that touch your machine ask
+  first, and file writes always ask. Inference servers run kernel-sandboxed
+  with Landlock, inside the snap's own confinement, with no outbound network.
+  App Lock protects the whole app behind a passphrase.
+
+  **Optional permissions**
+
+  Camera, PipeWire and external drives aren't connected automatically:
+
+      sudo snap connect box-linux:camera
+      sudo snap connect box-linux:pipewire
+      sudo snap connect box-linux:removable-media
+
+  Note: Box Code's shell can only use the tools bundled in the snap, not
+  compilers installed on your system. For full Box Code use, install the .deb
+  from GitHub.
 license: GPL-3.0-or-later
 website: https://github.com/jegly/b0x
 source-code: https://github.com/jegly/b0x
