@@ -17,6 +17,7 @@
 [![On-Device](https://img.shields.io/badge/Network-On--Device%20Only-FF5555.svg)]()
 [![License](https://img.shields.io/badge/License-GPL--3.0-FF5555.svg)](LICENSE)
 [![Package](https://img.shields.io/badge/Package-.deb-6272A4.svg)]()
+[![Snap](https://img.shields.io/badge/Snap-box--linux-6272A4.svg?logo=snapcraft&logoColor=white)](https://snapcraft.io/box-linux)
 
 ## Box for Linux (Desktop)
 
@@ -197,6 +198,31 @@ mode, Box Code's web research, and memory are opt-in.
 
 ## Install
 
+### Snap Store
+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/box-linux)
+
+```bash
+sudo snap install box-linux
+```
+
+Launch **Box** from your application menu, or run `box-linux` in a terminal.
+The snap runs strictly confined and updates automatically. A few optional
+features need a one-time permission, since snaps don't get them by default:
+
+```bash
+sudo snap connect box-linux:camera            # live camera vision
+sudo snap connect box-linux:pipewire          # camera via PipeWire
+sudo snap connect box-linux:removable-media   # files on external drives
+```
+
+> [!NOTE]
+> Inside the snap, Box Code's shell sees the tools bundled with the snap, not
+> the compilers and toolchains installed on your system. If you use Box Code
+> to build and test projects, install the `.deb` instead.
+
+### Debian package (.deb)
+
 Download the latest `.deb` (currently `box_0.4.0_amd64.deb`) from the
 [Releases](https://github.com/jegly/B0x/releases) page:
 
@@ -210,7 +236,8 @@ download a model (Gemma 4 E2B, ~2.59 GB). After that, it runs offline.
 
 ### Requirements
 
-- Ubuntu (amd64) with a GTK4 / libadwaita desktop session
+- Ubuntu (amd64) with a GTK4 / libadwaita desktop session — or, for the snap,
+  any amd64 Linux distribution with snapd
 - 3–4 GB of free storage for a chat model; 5–10 GB more if you want the
   image-generation bundles
 - A webcam is optional, for live vision mode
