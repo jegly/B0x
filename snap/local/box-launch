@@ -3,7 +3,8 @@
 #
 # core26 has no gnome extension yet, so this does the runtime wiring it would
 # normally provide (libs, typelibs, schemas, GStreamer, audio, Wayland), then
-# runs the staged python3 against the deb's compiled box_chat under /opt/box.
+# runs the staged python3 against the deb's compiled box_chat under /opt/box
+# via box_snap_main.py.
 
 TRIPLET=x86_64-linux-gnu
 LIBDIR="$SNAP/usr/lib/$TRIPLET"
@@ -43,4 +44,4 @@ fi
 export ALSA_CONFIG_PATH="$SNAP/etc/asound.conf"
 export PULSE_SERVER="unix:$XDG_RUNTIME_DIR/../pulse/native"
 
-exec "$SNAP/usr/bin/python3" -c "import sys; sys.argv[0]='box'; from box_chat.__main__ import main; sys.exit(main())" "$@"
+exec "$SNAP/usr/bin/python3" -m box_snap_main "$@"
