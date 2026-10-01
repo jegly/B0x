@@ -55,6 +55,7 @@ apps:
       - desktop-legacy
       - wayland
       - x11
+      - opengl            # /dev/dri — GTK GL renderer, Vulkan llama.cpp / sd.cpp
       - unity7            # StatusNotifierItem tray icon
       - gsettings
       - audio-playback    # TTS / voice mode

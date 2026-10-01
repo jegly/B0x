@@ -8,7 +8,7 @@
 TRIPLET=x86_64-linux-gnu
 LIBDIR="$SNAP/usr/lib/$TRIPLET"
 
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$LIBDIR:$SNAP/lib/$TRIPLET:$LIBDIR/pulseaudio"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$LIBDIR:$SNAP/lib/$TRIPLET:$LIBDIR/pulseaudio:$LIBDIR/libproxy"
 export PYTHONPATH="$SNAP/lib/box-snap:/opt/box/site-packages:$SNAP/usr/lib/python3/dist-packages"
 export PYTHONNOUSERSITE=1
 
