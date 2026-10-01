@@ -2,6 +2,14 @@
   <img src="https://raw.githubusercontent.com/jegly/Box/main/images/box-linux-catppuccin-latte.svg" alt="Box for Linux" width="90%" />
 </p>
 
+<p align="center">
+  <a href="https://snapcraft.io/box-linux"><img src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" alt="Get it from the Snap Store" height="56" /></a>
+</p>
+
+```bash
+sudo snap install box-linux
+```
+
 [![AI Assistant](https://img.shields.io/badge/AI%20Assistant-Local%20%26%20Agentic-BD93F9.svg)]()
 [![Python](https://img.shields.io/badge/Python-3.14-BD93F9.svg?logo=python&logoColor=white)](https://www.python.org)
 [![GTK4](https://img.shields.io/badge/GTK4-libadwaita-8BE9FD.svg)](https://www.gtk.org)
@@ -199,8 +207,6 @@ mode, Box Code's web research, and memory are opt-in.
 ## Install
 
 ### Snap Store
-
-[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/box-linux)
 
 ```bash
 sudo snap install box-linux
