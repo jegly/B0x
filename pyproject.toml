@@ -25,7 +25,7 @@ dependencies = [
     "ddgs>=9.0",
     # Display-math (LaTeX $$…$$) rendering via matplotlib mathtext — no TeX
     # install needed. Inline math uses the dependency-free Unicode renderer.
-    "matplotlib>=3.7",
+    "matplotlib>=3.11.2",
     # TurboVec: Rust-backed SIMD vector index (Google TurboQuant). Replaces the
     # numpy float32 BLOB search for RAG, notebooks, and persistent memory.
     "turbovec>=0.1",
