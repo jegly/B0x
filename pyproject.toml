@@ -13,7 +13,7 @@ authors = [{ name = "Jegly" }]
 dependencies = [
     "litert-lm-api>=0.12.0",
     "PyGObject>=3.50; sys_platform != 'win32'",
-    "sounddevice>=0.4",
+    "sounddevice>=0.5.6",
     # Voice-activity detection for live conversation mode (RMS fallback if absent)
     "webrtcvad-wheels>=2.0",
     "numpy>=1.24",
