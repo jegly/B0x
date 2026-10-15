@@ -11,7 +11,7 @@ requires-python = ">=3.12"
 license = { text = "GPL-3.0-or-later" }
 authors = [{ name = "Jegly" }]
 dependencies = [
-    "litert-lm-api>=0.12.0",
+    "litert-lm-api>=0.18.0",
     "PyGObject>=3.50; sys_platform != 'win32'",
     "sounddevice>=0.4",
     # Voice-activity detection for live conversation mode (RMS fallback if absent)
