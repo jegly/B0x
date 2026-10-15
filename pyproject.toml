@@ -19,7 +19,7 @@ dependencies = [
     "numpy>=2.5.4",
     "pypdf>=4.0",
     # RAG: embedding model runtime + tokenizer
-    "ai-edge-litert>=1.0",
+    "ai-edge-litert>=2.3.0",
     "sentencepiece>=0.2.2",
     # Phase 4 tools: free, key-less web search via DuckDuckGo
     "ddgs>=9.16.0",
