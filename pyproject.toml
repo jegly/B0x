@@ -22,7 +22,7 @@ dependencies = [
     "ai-edge-litert>=1.0",
     "sentencepiece>=0.2",
     # Phase 4 tools: free, key-less web search via DuckDuckGo
-    "ddgs>=9.0",
+    "ddgs>=9.16.0",
     # Display-math (LaTeX $$…$$) rendering via matplotlib mathtext — no TeX
     # install needed. Inline math uses the dependency-free Unicode renderer.
     "matplotlib>=3.7",
