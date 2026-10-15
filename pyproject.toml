@@ -16,7 +16,7 @@ dependencies = [
     "sounddevice>=0.4",
     # Voice-activity detection for live conversation mode (RMS fallback if absent)
     "webrtcvad-wheels>=2.0",
-    "numpy>=1.24",
+    "numpy>=2.5.4",
     "pypdf>=4.0",
     # RAG: embedding model runtime + tokenizer
     "ai-edge-litert>=1.0",
