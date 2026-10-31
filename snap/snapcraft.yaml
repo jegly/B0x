@@ -72,7 +72,7 @@ confinement: strict
 platforms:
   amd64:
 
-# The release .deb's box_chat is a Nuitka extension ABI-locked to Python 3.14,
+# The release .deb's vendored deps are compiled wheels for Python 3.14,
 # which is Ubuntu 26.04's python3 — hence core26. snapcraft's gnome extension
 # doesn't support core26 yet, so the GTK stack is staged below and wired up by
 # snap/local/box-launch instead.

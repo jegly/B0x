@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
 #
-# build_deb.sh — build the closed-source Box .deb.
+# build_deb.sh — build the Box .deb.
 #
-# Compiles box_chat to a native extension with Nuitka, vendors the pip-only
-# deps, and assembles a Debian package. GTK/gi/GStreamer stay as apt Depends.
+# Ships box_chat as Python source next to the vendored pip-only deps, and
+# assembles a Debian package. GTK/gi/GStreamer stay as apt Depends.
 #
 #   Run on a clean Ubuntu (target release) amd64 box with network access.
 #   This script only writes under ./build/ — the source tree is untouched.
 #
 # Build-host requirements (apt):
-#   build-essential  dpkg-dev  python3-dev
-# Nuitka itself is installed on the fly into ./build/ (never into the .deb).
+#   build-essential  dpkg-dev  python3-dev  (for deps pip builds from source)
 # The project's ./.venv (its pip) is used as the build pip — the system
 # python3 has no pip, and creating a venv would need python3-venv.
 #
@@ -36,8 +35,6 @@ BUILD="$REPO_ROOT/build"
 STAGE="$BUILD/box-pkg"            # dpkg-deb staging root
 OPT="$STAGE/opt/box"
 SITE="$OPT/site-packages"
-NUITKA_OUT="$BUILD/nuitka"
-BUILDTOOLS="$BUILD/buildtools"    # Nuitka installed here (build-only, --target)
 DEB="$BUILD/box_${VERSION}_${ARCH}.deb"
 
 # The project .venv was created under a now-stale home path, so its bin/pip
@@ -61,16 +58,12 @@ PYINC="$(python3 -c 'import sysconfig; print(sysconfig.get_path("include"))')"
 # ── 1. clean staging ────────────────────────────────────────────────────────
 say "Clean ./build/"
 rm -rf "$BUILD"
-mkdir -p "$SITE" "$NUITKA_OUT" "$BUILDTOOLS" "$STAGE/DEBIAN" \
+mkdir -p "$SITE" "$STAGE/DEBIAN" \
          "$STAGE/usr/bin" "$STAGE/usr/share/applications" \
          "$STAGE/usr/share/icons/hicolor/scalable/apps" \
          "$STAGE/usr/share/box/fonts" "$STAGE/usr/share/box/icons" \
          "$OPT/libexec" "$OPT/vision_models" "$OPT/litert_diffusion" \
          "$STAGE/usr/share/doc/box"
-
-# ── 2. install Nuitka (build-only, into ./build/buildtools) ─────────────────
-say "Install Nuitka into ./build/buildtools"
-"$BUILDPY" -m pip install --quiet --target "$BUILDTOOLS" --upgrade nuitka
 
 # ── 3. vendor the pip-only deps into site-packages ──────────────────────────
 # --ignore-installed forces a full, self-contained closure into $SITE so the
@@ -80,36 +73,17 @@ say "Vendor pip dependencies into /opt/box/site-packages"
 "$BUILDPY" -m pip freeze --path "$SITE" > "$BUILD/requirements-frozen.txt"
 echo "  frozen manifest -> build/requirements-frozen.txt"
 
-# ── 4. compile box_chat -> native extension ─────────────────────────────────
-# Module mode: only box_chat is compiled; gi/numpy/litert import at runtime.
-# No --python-flag=no_docstrings — the SDK needs tool __doc__ for schemas.
-# Run with the system python3 (clean: no editable box install on its path),
-# whose ABI tag the .deb's Depends pins; Nuitka is found via PYTHONPATH.
-say "Compile box_chat with Nuitka (this takes a few minutes)"
-PYTHONPATH="$BUILDTOOLS" python3 -m nuitka \
-    --mode=module box_chat \
-    --include-package=box_chat \
-    --output-dir="$NUITKA_OUT" \
-    --no-pyi-file \
-    --remove-output \
-    --assume-yes-for-downloads
+# ── 4. ship box_chat as source ──────────────────────────────────────────────
+# Runs on the system python3 (packaging/box.launcher). The .deb's Depends
+# pins its minor version because the vendored deps carry compiled wheels.
+say "Copy box_chat into /opt/box/site-packages"
+cp -r box_chat "$SITE/"
+find "$SITE/box_chat" -name '__pycache__' -type d -prune -exec rm -rf {} +
 
-shopt -s nullglob
-COMPILED=("$NUITKA_OUT"/box_chat*.so)
-shopt -u nullglob
-[ "${#COMPILED[@]}" -eq 1 ] || die "expected exactly one box_chat*.so, got ${#COMPILED[@]}"
-cp "${COMPILED[0]}" "$SITE/"
-echo "  compiled -> $(basename "${COMPILED[0]}")"
-
-# guard: no box_chat source must ever ship
-if find "$SITE" -path '*box_chat*' -name '*.py' | grep -q .; then
-    die "box_chat .py source leaked into site-packages"
-fi
-
-# ── 5. build gate — tool schemas must survive compilation ───────────────────
+# ── 5. build gate — tool schemas must be intact ─────────────────────────────
 # System python3 + PYTHONPATH=$SITE is exactly the deployed runtime, so the
-# gate imports the COMPILED box_chat.so (no editable source on the path).
-say "Gate: verify tool schemas survived compilation"
+# gate imports the shipped box_chat (no editable source on the path).
+say "Gate: verify tool schemas"
 PYTHONPATH="$SITE" python3 packaging/verify_schemas.py \
     || die "tool-schema gate failed (see packaging/verify_schemas.py)"
 
