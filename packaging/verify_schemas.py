@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Build gate: prove the LiteRT-LM tool schemas survive compilation.
+"""Build gate: prove the LiteRT-LM tool schemas are intact in the package.
 
 The SDK derives each tool's JSON schema from the callable's type hints and
-docstring. Nuitka must not strip ``__doc__`` / ``__annotations__`` or break
+docstring. Nothing may strip ``__doc__`` / ``__annotations__`` or break
 ``inspect.signature`` (which follows ``functools.wraps``' ``__wrapped__``
 through the timeout wrapper). If it does, web_search / fs_* silently lose
 their schemas at runtime.
 
-Run AGAINST THE COMPILED build: the caller puts the dir holding the compiled
-``box_chat`` extension on PYTHONPATH, then runs this. Exits non-zero on any
+Run AGAINST THE PACKAGED build: the caller puts the staged site-packages
+holding ``box_chat`` on PYTHONPATH, then runs this. Exits non-zero on any
 regression so the build aborts before packaging.
 """
 from __future__ import annotations
@@ -18,7 +18,7 @@ import sys
 
 
 def main() -> int:
-    import box_chat  # noqa: F401  — verifies the compiled package imports
+    import box_chat  # noqa: F401  — verifies the packaged box_chat imports
     from box_chat.config import Settings
     from box_chat.tools import enabled_tools
 

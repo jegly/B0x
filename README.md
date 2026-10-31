@@ -233,6 +233,18 @@ Download the latest `.deb` (currently `box_0.4.0_amd64.deb`) from the
 sudo apt install ./box_0.4.0_amd64.deb
 ```
 
+<!-- release-checksums:start -->
+| File | SHA-256 |
+|---|---|
+| `box_0.4.0_amd64.deb` | *sha256:2d92e8f5fe03aaf21ddf7a9ea734628514232f5b1c42b587b60190f96051f13d* |
+
+Verify a download:
+
+```bash
+sha256sum box_0.4.0_amd64.deb
+```
+<!-- release-checksums:end -->
+
 The package pulls its system dependencies automatically. Launch **Box** from
 your application menu, or run `box` in a terminal. On first run, Box offers to
 download a model (Gemma 4 E2B, ~2.59 GB). After that, it runs offline.
