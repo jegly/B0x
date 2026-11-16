@@ -226,25 +226,25 @@ sudo snap connect box-linux:removable-media   # files on external drives
 
 ### Debian package (.deb)
 
-Download the latest `.deb` (currently `box_0.4.1_amd64.deb`) from the
+Download the latest `.deb` (currently `box_0.4.2_amd64.deb`) from the
 [Releases](https://github.com/jegly/B0x/releases) page:
 
 ```bash
-sudo apt install ./box_0.4.1_amd64.deb
+sudo apt install ./box_0.4.2_amd64.deb
 ```
 
 <!-- release-checksums:start -->
 | File | SHA-256 |
 |---|---|
-| `box_0.4.1_amd64.deb` | *sha256:52194c5ddab31854778e197a0201a366a87efaf542d73026ee43d3e7320d11ce* |
+| `box_0.4.2_amd64.deb` | *sha256:dfe21dec6f3f04b083c9ca8154b438aa317dfc1a9fbdf11195a3ba025966f386* |
 
 Verify a download:
 
 ```bash
-sha256sum box_0.4.1_amd64.deb
+sha256sum box_0.4.2_amd64.deb
 ```
 
-The [build attestation](https://github.com/jegly/B0x/attestations) shows it was built by this repository's release workflow (with the GitHub CLI: `gh attestation verify box_0.4.1_amd64.deb --repo jegly/B0x`).
+The [build attestation](https://github.com/jegly/B0x/attestations) shows it was built by this repository's release workflow (with the GitHub CLI: `gh attestation verify box_0.4.2_amd64.deb --repo jegly/B0x`).
 <!-- release-checksums:end -->
 
 The package pulls its system dependencies automatically. Launch **Box** from
