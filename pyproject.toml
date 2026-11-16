@@ -20,7 +20,7 @@ dependencies = [
     "pypdf>=6.21.4",
     # RAG: embedding model runtime + tokenizer
     "ai-edge-litert>=2.3.0",
-    "sentencepiece>=0.2.2",
+    "sentencepiece>=0.2.3",
     # Phase 4 tools: free, key-less web search via DuckDuckGo
     "ddgs>=9.16.1",
     # Display-math (LaTeX $$…$$) rendering via matplotlib mathtext — no TeX
